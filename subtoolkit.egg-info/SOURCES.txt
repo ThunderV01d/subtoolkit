@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+subtoolkit/__init__.py
+subtoolkit/cli.py
+subtoolkit.egg-info/PKG-INFO
+subtoolkit.egg-info/SOURCES.txt
+subtoolkit.egg-info/dependency_links.txt
+subtoolkit.egg-info/entry_points.txt
+subtoolkit.egg-info/requires.txt
+subtoolkit.egg-info/top_level.txt

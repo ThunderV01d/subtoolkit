@@ -1,0 +1,18 @@
+[project]
+name = "subtoolkit"
+version = "0.1.0"
+description = "AI-powered subtitle synchronization toolkit"
+requires-python = ">=3.11"
+
+dependencies = [
+    "typer>=0.16",
+    "rich>=14.0",
+    "pysubs2>=1.8"
+]
+
+[project.scripts]
+subtoolkit = "subtoolkit.cli:app"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

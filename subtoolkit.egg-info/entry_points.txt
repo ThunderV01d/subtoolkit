@@ -1,0 +1,2 @@
+[console_scripts]
+subtoolkit = subtoolkit.cli:app

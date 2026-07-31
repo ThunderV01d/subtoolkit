@@ -1,4 +1,7 @@
 from pathlib import Path
+from .subtitles import load, save
+from .transforms import apply_offset
+
 import typer
 
 app = typer.Typer(
@@ -9,14 +12,27 @@ app = typer.Typer(
 def sync(
     video:Path,
     subtitle:Path,
-    offset:float = typer.Option(0.0, "--offset","-o",help="Number of milliseconds to offset the subtitle file. Positive values will push the subtitles forward, while negative values will bring them back."),
+    offset_ms:int = typer.Option(0, "--offset","-o",help="Offset in milliseconds."),
     output:Path | None = typer.Option(None, "--output","-O",help="Output path for the synchronized subtitle file."),
     ):
 
     print(f"Video: {video}")
     print(f"Subtitle: {subtitle}")
-    print(f"Offset: {offset}")
+    print(f"Offset: {offset_ms}")
     print(f"Output: {output}")
+
+    entries = load(subtitle)
+    entries = apply_offset(
+        entries,
+        int(offset_ms),
+    )
+
+    if output is None:
+        output = subtitle.with_stem(f"{subtitle.stem}_synced")
+
+    save(entries, output)
+
+    print(f"Saved synchronized subtitle to {output}")
 
 @app.command()
 def version():
